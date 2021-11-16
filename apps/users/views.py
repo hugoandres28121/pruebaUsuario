@@ -45,7 +45,7 @@ class UserCreateView(views.APIView):
 
 
 class UserDetailView(generics.RetrieveAPIView):
-    queryset = Usuario.objects.all()
+    queryset = Usuario.objects.all().values('username','password','documento','email','nombres','apellidos')
     serializer_class = UserSerializer
 
 
@@ -56,7 +56,7 @@ class VerifyTokenView(TokenVerifyView):
         try:
             serializer.is_valid(raise_exception=True)
             token_data = tokenBackend.decode(request.data['token'],verify=False)
-            serializer.validated_data['UserId'] = token_data['usuario_username']
+            serializer.validated_data['Username'] = token_data['usuario_username']
         except TokenError as e:
             raise InvalidToken(e.args[0])
         return Response(serializer.validated_data, status=status.HTTP_200_OK)

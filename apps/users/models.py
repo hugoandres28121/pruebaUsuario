@@ -34,8 +34,8 @@ class UserManager(BaseUserManager, models.Manager):
     
 
 class Usuario(AbstractBaseUser,PermissionsMixin):
-    documento = models.CharField('Numero de Documento',max_length=50,unique=True)
-    username = models.CharField('Nombre de Usuario',max_length=50, primary_key=True)
+    documento = models.CharField('Numero de Documento',max_length=50,primary_key=True)
+    username = models.CharField('Nombre de Usuario',max_length=50,unique=True)
     email = models.EmailField('Correo Electronico', max_length=254,unique=True)
     telefono_celular = models.CharField('Numero de Telefono Celular', max_length=10,blank=True,null=True)
     nombres = models.CharField('Nombres', max_length=50)
