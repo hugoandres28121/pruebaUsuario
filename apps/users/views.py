@@ -36,7 +36,7 @@ class UserCreateView(views.APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         
-        tokenData = {"cedula":request.data["cedula"],
+        tokenData = {"username":request.data["username"],
                     "password":request.data["password"]}
         tokenSerializer = TokenObtainPairSerializer(data=tokenData)
         tokenSerializer.is_valid(raise_exception=True)
@@ -56,7 +56,7 @@ class VerifyTokenView(TokenVerifyView):
         try:
             serializer.is_valid(raise_exception=True)
             token_data = tokenBackend.decode(request.data['token'],verify=False)
-            serializer.validated_data['UserId'] = token_data['usuario_cedula']
+            serializer.validated_data['UserId'] = token_data['usuario_username']
         except TokenError as e:
             raise InvalidToken(e.args[0])
         return Response(serializer.validated_data, status=status.HTTP_200_OK)

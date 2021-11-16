@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 
 class UserManager(BaseUserManager, models.Manager):
 #creacion de usuarios, recibe varios parametros, de acuerdo a lo que esta en nuesto modelo users
-    def _create_user(self,cedula, username, email,nombres,apellidos, password,
+    def _create_user(self,documento, username, email,nombres,apellidos, password,
      is_staff, is_superuser, **extra_fields):
 
         if not username:
@@ -13,7 +13,7 @@ class UserManager(BaseUserManager, models.Manager):
 
 
         user = self.model(
-            cedula=cedula,
+            documento=documento,
             username=username,
             email = self.normalize_email(email),
             nombres=nombres,
@@ -26,16 +26,16 @@ class UserManager(BaseUserManager, models.Manager):
         user.save(using=self.db)
         return user
 
-    def create_user(self,cedula, username, email,nombres,apellidos, password=None, **extra_fields):
-        return self._create_user(cedula,username, email,nombres,apellidos,password,False, False, **extra_fields)
+    def create_user(self,documento, username, email,nombres,apellidos, password=None, **extra_fields):
+        return self._create_user(documento,username, email,nombres,apellidos,password,False, False, **extra_fields)
 
-    def create_superuser(self,cedula, username, email,nombres,apellidos, password=None, **extra_fields):
-        return self._create_user(cedula,username, email,nombres,apellidos, password, True, True, **extra_fields)
+    def create_superuser(self,documento, username, email,nombres,apellidos, password=None, **extra_fields):
+        return self._create_user(documento,username, email,nombres,apellidos, password, True, True, **extra_fields)
     
 
 class Usuario(AbstractBaseUser,PermissionsMixin):
-    cedula = models.CharField(max_length=50,primary_key=True)
-    username = models.CharField('Nombre de Usuario', max_length=50,unique=True)
+    documento = models.CharField('Numero de Documento',max_length=50,unique=True)
+    username = models.CharField('Nombre de Usuario',max_length=50, primary_key=True)
     email = models.EmailField('Correo Electronico', max_length=254,unique=True)
     telefono_celular = models.CharField('Numero de Telefono Celular', max_length=10,blank=True,null=True)
     nombres = models.CharField('Nombres', max_length=50)
@@ -59,10 +59,10 @@ class Usuario(AbstractBaseUser,PermissionsMixin):
 
 
     #Campo que usara como identificador del usuario
-    USERNAME_FIELD = 'cedula'
+    USERNAME_FIELD = 'username'
 
     #Campos que requerira para crear el usuario
-    REQUIRED_FIELDS = ['username','email','nombres','apellidos']
+    REQUIRED_FIELDS = ['documento','email','nombres','apellidos']
 
 
     def __str__(self):

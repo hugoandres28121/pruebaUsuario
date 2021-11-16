@@ -46,8 +46,8 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': False,
 
     'ALGORITHM': 'HS256',
-    'USER_ID_FIELD': 'cedula',
-    'USER_ID_CLAIM': 'usuario_cedula',
+    'USER_ID_FIELD': 'username',
+    'USER_ID_CLAIM': 'usuario_username',
 }
 
 
