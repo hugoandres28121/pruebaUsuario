@@ -3,11 +3,11 @@
 
 1.Crear Ambiente virtual con:
 
-python -m venv env
+      python -m venv env
 
 2.Porfavor instalar las dependencias necesarias del archivo requirements.txt  desde la raiz del projecto, con el siguiente comando
 
-pip install -r requirements.txt
+      pip install -r requirements.txt
 
 Para tener en cuenta, en Pruebas con PostMan:
       
@@ -30,20 +30,22 @@ Con la siguiente estructura:
                 "apellidos":"Marrugo Polo"
             }
 
-    Ver detalle Usuario
+Ver detalle Usuario
 Para ver en detalle un usuario, se usa el documento,en la siguiente direccion:
 Metodo GET
 
       http://127.0.0.1:8000/user/1051449968
 
 
-    Login
+Login
 Para Hacer un Login, se usa la direccion:
 Metodo POST
+
       http://127.0.0.1:8000/login/
 
 Para loguearse se usa el username
 se ingresa en el body:
+
             {
                 "username":"hugoA",
                 "password":"****"
