@@ -20,7 +20,7 @@ Con la siguiente estructura:
 
 {
     "documento":"1051449969",
-    "password":"admin",
+    "password":"****",
     "username": "hugo",
     "email": "hugomarrugopolo28@hotmail.com",
     "nombres": "Hugo Andres",
