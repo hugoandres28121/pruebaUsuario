@@ -10,7 +10,9 @@ python -m venv env
 pip install -r requirements.txt
 
 Para tener en cuenta, en Pruebas con PostMan:
-        Crear usuario
+      
+      
+      Crear usuario
 Para crear un Usuario,Se usa la direccion:
 http://127.0.0.1:8000/user/
 
